@@ -1,0 +1,19 @@
+#env folder needs to be ignored
+.env
+#cache folder
+_pycache_/
+
+__pycache__/
+
+#venv
+genai/
+#duplicate of the genai folder, this is for testing purposes only
+app copy.py
+#this file is fpr testing the benchmarking of the model
+benchmark.py
+
+
+## This file is for testing purposes only
+Implementations Similar to FutureDynamic's Adaptiv.pdf
+#Igonore this file, it is just for testing purposes
+test.py

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  chainlit-app:
+    build: .
+    container_name: unt-chainlit-app
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CHAINLIT_AUTH_SECRET=${CHAINLIT_AUTH_SECRET}
+      - INFERENCE_MODEL=meta-llama/Llama-3.2-11B-Vision-Instruct
+    volumes:
+      - ./.chainlit:/app/.chainlit
+      - ./public:/app/public
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    container_name: unt-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis-data:
